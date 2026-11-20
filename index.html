@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Aplikasi belajar interaktif Informatika Kelas IX untuk persiapan ASAS Ganjil 2026/2027.">
+<title>Belajar Informatika Kelas IX</title>
+<style>
+:root{--navy:#142d49;--teal:#167783;--teal2:#e9f4f4;--ink:#203044;--muted:#687789;--line:#dce3e9;--paper:#f5f7fa;--white:#fff;--green:#23865b;--red:#bd594b;--shadow:0 8px 28px rgba(22,45,70,.07)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.65 Inter,system-ui,-apple-system,Segoe UI,Arial,sans-serif}
+button,input{font:inherit}
+button{cursor:pointer}
+.app{max-width:1180px;margin:auto;padding:22px}
+header{background:linear-gradient(120deg,var(--navy),var(--teal));color:#fff;border-radius:18px;padding:26px 30px;display:flex;justify-content:space-between;align-items:center;gap:20px;box-shadow:var(--shadow)}
+.brand{display:flex;align-items:center;gap:15px}.logo{height:52px;width:52px;border:1px solid #ffffff66;background:#ffffff1c;border-radius:14px;display:grid;place-items:center;font-weight:900;font-size:21px}
+.eyebrow{font-size:11px;letter-spacing:1.7px;font-weight:800;color:#cce8e9}h1{font-size:clamp(23px,4vw,34px);line-height:1.2;margin:4px 0 7px}header p{margin:0;color:#d7e8ec;font-size:13px}.school{border:1px solid #ffffff55;border-radius:30px;padding:8px 13px;font-size:11px;white-space:nowrap}
+.layout{display:grid;grid-template-columns:220px minmax(0,1fr);gap:22px;margin-top:22px}
+aside,.card,.panel{background:var(--white);border:1px solid var(--line);border-radius:15px;box-shadow:var(--shadow)}
+aside{padding:14px;height:max-content;position:sticky;top:15px}.nav-label{font-size:10px;letter-spacing:1.3px;font-weight:800;color:var(--muted);padding:8px 10px 13px}
+.nav{display:block;width:100%;text-align:left;border:0;background:transparent;color:var(--ink);padding:11px 12px;border-radius:9px;font-size:13px;font-weight:700;margin:3px 0}.nav:hover,.nav.active{background:var(--teal2);color:var(--teal)}
+.aside-tip{background:#f2f6f8;border-radius:10px;padding:12px;font-size:11px;color:var(--muted);margin-top:20px}
+main{min-width:0}.mobile-nav{display:none;gap:7px;overflow:auto;margin-bottom:14px}.mobile-nav .nav{white-space:nowrap;width:auto;border:1px solid var(--line);background:white}
+.view{display:none}.view.active{display:block}
+.hero{padding:25px;background:white;border:1px solid var(--line);border-radius:15px;margin-bottom:16px}
+.hero h2{font-size:25px;margin:5px 0 8px;line-height:1.25}.hero p{color:var(--muted);max-width:700px;margin:0}
+.kicker{font-size:10px;letter-spacing:1.2px;color:var(--teal);font-weight:850}
+.actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:17px}
+.btn{border:0;border-radius:9px;background:var(--teal);color:white;padding:10px 15px;font-size:12px;font-weight:800}.btn:hover{filter:brightness(.94)}
+.btn.secondary{background:#eef2f5;color:var(--ink);border:1px solid var(--line)}.btn.outline{background:white;color:var(--teal);border:1px solid var(--teal)}.btn:disabled{opacity:.45;cursor:not-allowed}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:11px;margin:16px 0}.stat{padding:14px 16px;background:white;border:1px solid var(--line);border-radius:12px}.stat span{font-size:11px;color:var(--muted)}.stat strong{display:block;font-size:25px;line-height:1.4}
+.section-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:8px 0 16px}.section-head h2{margin:0;font-size:22px}.muted{color:var(--muted);font-size:12px}
+.chapters{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.chapter-card{background:white;border:1px solid var(--line);border-radius:13px;padding:17px;display:flex;flex-direction:column;min-height:210px}.chapter-no{font-size:10px;color:var(--teal);font-weight:900;letter-spacing:1px;margin-bottom:9px}.chapter-card h3{font-size:16px;line-height:1.35;margin:0 0 8px}.chapter-card p{font-size:12px;color:var(--muted);margin:0 0 16px}.chapter-card button{margin-top:auto;align-self:flex-start}
+.panel{padding:17px;margin:14px 0}.panel h3{margin:0 0 8px;font-size:16px}
+.tabs{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:14px}.tab{border:1px solid var(--line);border-radius:9px;background:white;color:var(--ink);padding:9px 13px;font-size:12px;font-weight:750}.tab.active{border-color:var(--teal);background:var(--teal2);color:var(--teal)}
+.search{width:100%;padding:11px 13px;border:1px solid var(--line);border-radius:9px;background:white;margin-bottom:13px;outline-color:var(--teal)}
+.topic{background:white;border:1px solid var(--line);border-radius:11px;margin-bottom:9px;overflow:hidden}.topic summary{padding:14px 16px;font-weight:800;font-size:13px;cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:10px}.topic summary::-webkit-details-marker{display:none}.topic summary:after{content:"＋";color:var(--teal);font-size:16px}.topic[open] summary:after{content:"−"}.topic-body{padding:0 16px 16px;font-size:13px;line-height:1.75}.topic-body p{margin:7px 0}.topic-body ul,.topic-body ol{padding-left:21px}.topic-body li{margin:4px 0}
+.callout{background:var(--teal2);border-left:3px solid var(--teal);padding:11px 13px;border-radius:5px;margin:12px 0;font-size:12px}
+.table-wrap{overflow-x:auto;margin:10px 0}table{border-collapse:collapse;width:100%;min-width:440px;font-size:12px}th,td{padding:10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}th{background:#f1f5f7;font-weight:800}
+.code{background:#172f43;color:#e4f0ef;padding:13px;border-radius:9px;font:12px/1.8 ui-monospace,Consolas,monospace;white-space:pre-wrap}
+.quiz-card{background:white;border:1px solid var(--line);border-radius:14px;padding:20px}.quiz-meta{display:flex;justify-content:space-between;gap:12px;color:var(--muted);font-size:11px;margin-bottom:12px}.progress{height:7px;background:#edf1f4;border-radius:20px;overflow:hidden;margin-bottom:18px}.progress span{display:block;height:100%;background:var(--teal);transition:width .2s}
+.question{font-size:16px;font-weight:850;line-height:1.55;margin-bottom:7px}.instruction{font-size:11px;color:var(--muted);margin-bottom:14px}
+.option{display:flex;gap:10px;align-items:flex-start;padding:12px;border:1px solid var(--line);border-radius:10px;margin:8px 0;cursor:pointer;font-size:12px;line-height:1.6}.option:hover{border-color:var(--teal)}.option.selected{background:var(--teal2);border-color:var(--teal)}.option input{margin-top:4px;accent-color:var(--teal)}.letter{font-weight:900;color:var(--teal);min-width:17px}.option.correct{background:#edf8f1;border-color:var(--green)}.option.incorrect{background:#fff1ef;border-color:var(--red)}
+.explanation{font-size:11px;color:var(--muted);margin:6px 0 10px 29px;line-height:1.6}.feedback{margin-top:14px;padding:13px;background:#f2f5f7;border-radius:9px;font-size:12px;line-height:1.7}.feedback.good{border-left:3px solid var(--green)}.feedback.bad{border-left:3px solid var(--red)}
+.quiz-actions{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-top:17px}
+.essay{padding:16px;background:white;border:1px solid var(--line);border-radius:12px;margin-bottom:12px}.essay h3{margin:4px 0 9px;font-size:15px}.answer{padding:13px;background:#f2f5f7;border-radius:9px;margin-top:12px;font-size:12px;line-height:1.8}
+.summary-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.summary-item{padding:16px;background:white;border:1px solid var(--line);border-radius:12px}.summary-item h3{font-size:15px;margin:5px 0}.summary-item ul,.summary-item ol{padding-left:20px;font-size:12px;line-height:1.8}
+footer{text-align:center;color:var(--muted);font-size:10px;margin:22px 0 5px}
+@media(max-width:800px){.layout{grid-template-columns:1fr}.sidebar{display:none}.mobile-nav{display:flex}.chapters{grid-template-columns:1fr}.chapter-card{min-height:0}.school{display:none}}
+@media(max-width:520px){.app{padding:12px}header{padding:19px}.logo{width:43px;height:43px}.stats{gap:7px}.stat{padding:10px}.stat strong{font-size:21px}.hero{padding:18px}.hero h2{font-size:22px}.summary-grid{grid-template-columns:1fr}.quiz-card{padding:14px}.section-head h2{font-size:20px}}
+</style>
+</head>
+<body>
+<div class="app">
+<header>
+  <div class="brand"><div class="logo">IX</div><div><div class="eyebrow">RUANG BELAJAR DIGITAL</div><h1>Informatika Kelas IX</h1><p>Persiapan Asesmen Sumatif Akhir Semester Ganjil · 2026/2027</p></div></div>
+  <div class="school">SMP KRISTEN BPPK BANDUNG</div>
+</header>
+<div class="layout">
+<aside>
+  <div class="nav-label">MENU BELAJAR</div>
+  <button class="nav active" data-view="home">⌂ &nbsp; Beranda</button>
+  <button class="nav" data-view="materi">▤ &nbsp; Materi Pelajaran</button>
+  <button class="nav" data-view="latihan">✎ &nbsp; Latihan Soal</button>
+  <button class="nav" data-view="ringkasan">▣ &nbsp; Ringkasan Cepat</button>
+  <div class="aside-tip"><b>Tips belajar</b><br>Pelajari konsep, pahami contoh, lalu kerjakan latihan tanpa melihat catatan. Periksa pembahasan setelah menjawab.</div>
+</aside>
+<main>
+<div class="mobile-nav">
+  <button class="nav active" data-view="home">⌂ Beranda</button><button class="nav" data-view="materi">▤ Materi</button><button class="nav" data-view="latihan">✎ Latihan</button><button class="nav" data-view="ringkasan">▣ Ringkasan</button>
+</div>
+
+<section class="view active" id="view-home">
+  <div class="hero"><div class="kicker">SELAMAT DATANG, SISWA!</div><h2>Belajar Informatika Jadi Lebih Mudah.</h2><p>Jelajahi tiga bab materi, pahami konsep penting, dan uji pemahamanmu melalui latihan interaktif yang dilengkapi pembahasan.</p><div class="actions"><button class="btn" data-view="materi">Mulai Belajar →</button><button class="btn secondary" data-view="latihan">Kerjakan Latihan</button></div></div>
+  <div class="stats"><div class="stat"><span>Materi utama</span><strong>03</strong><span>Bab pembelajaran</span></div><div class="stat"><span>Latihan objektif</span><strong>12</strong><span>Soal interaktif</span></div><div class="stat"><span>Latihan uraian</span><strong>03</strong><span>Dengan contoh jawaban</span></div></div>
+  <div class="section-head"><h2>Peta Materi</h2><span class="muted">Pilih bab untuk mulai belajar</span></div>
+  <div class="chapters">
+    <article class="chapter-card"><div class="chapter-no">BAB 01 · DASAR LOGIKA</div><h3>Berpikir Komputasional</h3><p>Belajar menyelesaikan masalah secara logis, terstruktur, dan sistematis.</p><button class="btn outline" data-open-chapter="0">Pelajari Bab 1 →</button></article>
+    <article class="chapter-card"><div class="chapter-no">BAB 02 · SISTEM KOMPUTER</div><h3>Sistem Operasi Komputer</h3><p>Memahami fungsi OS, proses booting, memori, file, dan keamanan pengguna.</p><button class="btn outline" data-open-chapter="1">Pelajari Bab 2 →</button></article>
+    <article class="chapter-card"><div class="chapter-no">BAB 03 · PERAWATAN</div><h3>Pemeliharaan Komputer</h3><p>Mengenali cara merawat perangkat, melindungi data, dan mendiagnosis masalah.</p><button class="btn outline" data-open-chapter="2">Pelajari Bab 3 →</button></article>
+  </div>
+  <div class="panel"><h3>Strategi Menghadapi ASAS</h3><ol style="padding-left:21px;font-size:13px;line-height:1.9;margin-bottom:0"><li>Pahami definisi dan fungsi setiap konsep.</li><li>Bandingkan konsep yang sering tertukar.</li><li>Untuk pilihan ganda kompleks, periksa setiap opsi secara mandiri.</li><li>Untuk soal uraian, susun jawaban: masalah → data/komponen penting → langkah atau analisis → hasil → alasan.</li></ol></div>
+</section>
+
+<section class="view" id="view-materi">
+  <div class="section-head"><div><div class="kicker">MODUL PEMBELAJARAN</div><h2>Materi Pelajaran</h2></div></div>
+  <div class="tabs" id="chapter-tabs"></div><div class="panel" id="chapter-intro"></div>
+  <input class="search" id="topic-search" placeholder="⌕  Cari topik atau kata kunci dalam bab ini...">
+  <div id="topic-list"></div>
+</section>
+
+<section class="view" id="view-latihan">
+  <div class="section-head"><div><div class="kicker">UJI PEMAHAMAN</div><h2>Latihan Soal</h2></div></div>
+  <p class="muted" style="margin-top:-6px">Kerjakan soal, periksa jawaban, dan pelajari penjelasan untuk memahami konsep yang benar.</p>
+  <div class="tabs"><button class="tab active" data-mode="pg">Pilihan Ganda</button><button class="tab" data-mode="essay">Soal Uraian</button></div>
+  <div id="quiz-area"></div>
+</section>
+
+<section class="view" id="view-ringkasan">
+  <div class="section-head"><div><div class="kicker">CATATAN BELAJAR</div><h2>Ringkasan Cepat</h2></div></div>
+  <p class="muted" style="margin-top:-6px">Gunakan halaman ini untuk mengulang konsep utama sebelum asesmen.</p>
+  <div class="summary-grid">
+    <article class="summary-item"><div class="chapter-no">BAB 1</div><h3>Konsep Berpikir Komputasional</h3><ul><li><b>Dekomposisi:</b> memecah masalah besar menjadi bagian kecil.</li><li><b>Pengenalan pola:</b> menemukan kesamaan atau keteraturan.</li><li><b>Abstraksi:</b> memilih informasi yang relevan.</li><li><b>Algoritma:</b> menyusun langkah penyelesaian yang runtut.</li></ul></article>
+    <article class="summary-item"><div class="chapter-no">BAB 1</div><h3>Struktur dan Pencarian</h3><ul><li><b>Sequence:</b> langkah berurutan.</li><li><b>Selection:</b> memilih tindakan berdasarkan kondisi.</li><li><b>Iteration:</b> mengulang instruksi.</li><li><b>Linear search:</b> memeriksa data satu per satu.</li><li><b>Binary search:</b> mempersempit pencarian pada data terurut.</li><li><b>Queue:</b> FIFO, masuk belakang dan keluar depan.</li></ul></article>
+    <article class="summary-item"><div class="chapter-no">BAB 2</div><h3>Fungsi Sistem Operasi</h3><ul><li>Manajemen proses dan penjadwalan CPU.</li><li>Manajemen memori (RAM).</li><li>Manajemen file dan direktori.</li><li>Manajemen perangkat melalui driver.</li><li>Keamanan akun dan pengaturan hak akses.</li></ul></article>
+    <article class="summary-item"><div class="chapter-no">BAB 2</div><h3>Urutan Booting</h3><ol><li>Komputer dinyalakan.</li><li>Firmware BIOS/UEFI bekerja dan melakukan pemeriksaan awal (POST).</li><li>Firmware mencari perangkat boot.</li><li>Bootloader memulai pemuatan OS.</li><li>OS dimuat ke memori dan layanan dijalankan.</li></ol></article>
+    <article class="summary-item"><div class="chapter-no">BAB 3</div><h3>Jenis Pemeliharaan</h3><ul><li><b>Preventif:</b> mencegah gangguan sebelum terjadi.</li><li><b>Korektif:</b> menangani gangguan yang sudah terjadi.</li><li>Catat keluhan, tindakan, hasil pemeriksaan, dan petugas.</li></ul></article>
+    <article class="summary-item"><div class="chapter-no">BAB 3</div><h3>Keamanan dan Backup</h3><ul><li>Matikan dan lepaskan listrik sebelum pembersihan internal.</li><li>Jangan menyemprot cairan langsung ke perangkat.</li><li>Verifikasi lampiran dan file mencurigakan.</li><li>Backup melindungi data, bukan menambah RAM.</li><li>Gunakan kata sandi kuat dan unik.</li></ul></article>
+  </div>
+  <div class="panel"><h3>Perbandingan yang Wajib Diingat</h3><div class="table-wrap"><table><thead><tr><th>Konsep</th><th>Perbedaan utama</th></tr></thead><tbody><tr><td>Linear vs Binary Search</td><td>Linear dapat digunakan pada data belum terurut. Binary memerlukan data terurut.</td></tr><tr><td>FIFO vs LIFO</td><td>FIFO: pertama masuk, pertama keluar. LIFO: terakhir masuk, pertama keluar.</td></tr><tr><td>RAM vs Backup</td><td>RAM menampung data dan instruksi yang sedang digunakan. Backup menyimpan salinan untuk pemulihan.</td></tr><tr><td>Preventif vs Korektif</td><td>Preventif mencegah gangguan. Korektif menangani gangguan yang telah muncul.</td></tr><tr><td>BIOS/UEFI vs OS</td><td>Firmware bekerja lebih awal untuk inisialisasi dan proses boot. OS mengelola sumber daya setelah dimuat.</td></tr><tr><td>Akun standar vs Administrator</td><td>Akun standar memiliki hak terbatas. Administrator memiliki hak pengelolaan sistem lebih tinggi.</td></tr></tbody></table></div></div>
+</section>
+<footer>
+  <div style="font-weight:800;color:var(--ink);font-size:12px;margin-bottom:4px">Aplikasi dibuat dan dikembangkan oleh</div>
+  <div style="font-weight:850;color:var(--teal);font-size:14px;margin-bottom:8px">Krisna Wisnu Natrian, S.Pd.</div>
+  Media pembelajaran Informatika Kelas IX · Berdasarkan Rangkuman Materi dan Panduan Belajar ASAS 2026/2027.
+</footer>
+</main>
+</div>
+</div>
+
+<script>
+const chapters = [
+{title:"Berpikir Komputasional",subtitle:"Menyelesaikan masalah secara terstruktur, logis, dan dapat diuji.",intro:"Berpikir komputasional adalah cara menyelesaikan masalah secara terstruktur sehingga solusinya dapat dijalankan, diuji, dan bila perlu diotomatisasi. Tidak semua masalah harus diselesaikan dengan komputer.",topics:[
+["1.1 Algoritma dan berpikir algoritmik",`<p><b>Algoritma</b> adalah urutan instruksi yang jelas, logis, dan berhingga untuk menyelesaikan masalah. Setiap langkah harus dapat dipahami dan dilaksanakan.</p><ul><li><b>Urutan (sequence):</b> instruksi dijalankan satu demi satu.</li><li><b>Percabangan (selection):</b> program memilih tindakan berdasarkan kondisi.</li><li><b>Perulangan (iteration/loop):</b> instruksi dilakukan berulang selama atau sampai kondisi tertentu terpenuhi.</li></ul><div class="callout"><b>Ciri algoritma yang baik:</b> input jelas, proses benar, output sesuai tujuan, langkah tidak ambigu, serta memiliki kondisi berhenti. Algoritma perlu diuji dengan data normal dan kasus batas.</div>`],
+["1.2 Input – Proses – Output (IPO)",`<p>IPO menggambarkan alur pengolahan data.</p><div class="table-wrap"><table><tr><th>Komponen</th><th>Makna</th><th>Contoh biaya parkir</th></tr><tr><td>Input</td><td>Data yang diperlukan</td><td>Lama parkir dan tarif per jam</td></tr><tr><td>Proses</td><td>Operasi yang mengolah masukan</td><td>Lama parkir × tarif per jam</td></tr><tr><td>Output</td><td>Hasil setelah proses</td><td>Total biaya parkir</td></tr></table></div><p>Tidak semua informasi aplikasi menjadi input perhitungan. Warna tombol dan latar aplikasi bukan variabel utama untuk menghitung biaya parkir.</p>`],
+["1.3 Empat konsep inti berpikir komputasional",`<div class="table-wrap"><table><tr><th>Konsep</th><th>Pengertian</th><th>Contoh</th></tr><tr><td>Dekomposisi</td><td>Memecah masalah besar menjadi bagian kecil.</td><td>Sistem perpustakaan dibagi menjadi data buku, anggota, pencarian, transaksi, dan laporan.</td></tr><tr><td>Pengenalan pola</td><td>Menemukan kesamaan atau keteraturan.</td><td>Mengelompokkan buku berdasarkan mata pelajaran.</td></tr><tr><td>Abstraksi</td><td>Memilih informasi penting dan mengabaikan detail tidak relevan.</td><td>Menghitung keterlambatan cukup menggunakan nama dan jumlah keterlambatan.</td></tr><tr><td>Algoritma</td><td>Menyusun langkah penyelesaian secara runtut.</td><td>Menghitung, membagi, membagikan, lalu memeriksa sisa.</td></tr></table></div><div class="callout"><b>Jangan tertukar:</b> dekomposisi = memecah pekerjaan; pola = menemukan kesamaan; abstraksi = memilih informasi relevan; algoritma = menyusun langkah.</div>`],
+["1.4 Menguji dan memperbaiki algoritma",`<p>Algoritma perlu diuji menggunakan data yang mewakili berbagai kondisi.</p><ul><li><b>Kasus normal:</b> data sesuai penggunaan umum.</li><li><b>Kasus batas:</b> nilai minimum/maksimum, data kosong, jumlah data satu, atau nilai yang sama.</li><li><b>Kasus tidak biasa:</b> input negatif, format salah, atau data tidak tersedia.</li></ul><p>Jika hasil tidak sesuai, periksa urutan instruksi, percabangan, perulangan, dan penanganan nilai yang sama.</p>`],
+["1.5 Mengevaluasi urutan langkah",`<p>Beberapa langkah algoritma dapat dipertukarkan jika tujuan dan hasilnya tetap benar. Bandingkan hasil kedua urutan melalui pengujian. Jangan menganggap semua urutan selalu sama atau selalu berbeda.</p>`],
+["1.6 Percabangan dan perulangan",`<ul><li><b>Urutan:</b> masukkan data → hitung → tampilkan hasil.</li><li><b>Percabangan:</b> jika karakter menyentuh dinding, hentikan gerakan; jika belum, lanjutkan.</li><li><b>Perulangan:</b> selama tombol kanan ditekan dan dinding belum tersentuh, gerakkan karakter satu kotak.</li></ul><p>Kondisi berhenti penting agar program tidak berjalan tanpa batas.</p>`],
+["1.7 Prosedur dan parameter",`<p><b>Prosedur</b> adalah kumpulan langkah yang diberi nama untuk menjalankan tugas tertentu. <b>Parameter</b> adalah nilai masukan yang diberikan saat prosedur dipanggil.</p><p>Contoh: prosedur hitungRataRata(daftarNilai) menerima daftar nilai, menjumlahkan data, menghitung banyak data, lalu membaginya. Parameter membuat prosedur dapat digunakan pada data yang berbeda.</p>`],
+["1.8 Pencarian linear dan biner",`<div class="table-wrap"><table><tr><th>Aspek</th><th>Linear Search</th><th>Binary Search</th></tr><tr><td>Cara kerja</td><td>Memeriksa elemen satu per satu dari awal.</td><td>Memeriksa elemen tengah dan mempersempit separuh rentang.</td></tr><tr><td>Syarat data</td><td>Dapat digunakan pada data belum terurut.</td><td>Memerlukan data terurut.</td></tr><tr><td>Kesesuaian</td><td>Data kecil/tidak terurut atau satu pencarian.</td><td>Pencarian pada data besar yang sudah terurut.</td></tr></table></div><div class="callout">Contoh: mencari satu nama dalam 1.000 nama yang belum terurut dengan memeriksa satu per satu merupakan linear search. Dalam kasus terburuk, seluruh 1.000 data dapat diperiksa.</div>`],
+["1.9 Queue dan FIFO",`<p><b>Queue (antrean)</b> adalah struktur data dengan prinsip <b>FIFO (First In, First Out)</b>: data yang masuk lebih dahulu akan dilayani atau dikeluarkan lebih dahulu.</p><ul><li>Elemen baru ditambahkan di bagian belakang (rear).</li><li>Elemen yang dilayani diambil dari bagian depan (front).</li><li>Contoh: antrean kantin, pencetakan dokumen, dan layanan.</li></ul><p>Jangan tertukar dengan <b>LIFO (Last In, First Out)</b> pada struktur data stack.</p>`],
+["1.10 Contoh algoritma diskon koperasi",`<p>Diskon 10% diberikan jika total belanja sebelum diskon minimal Rp100.000. Kata <b>minimal</b> berarti Rp100.000 juga memenuhi syarat.</p><div class="code">total = 0\nUNTUK setiap barang:\n  subtotal = harga_satuan × jumlah\n  total = total + subtotal\nJIKA total &gt;= 100000:\n  diskon = 0,10 × total\nJIKA TIDAK:\n  diskon = 0\ntotal_bayar = total - diskon\nTAMPILKAN total, diskon, total_bayar</div><p>Input: harga satuan dan jumlah barang. Proses: menghitung subtotal dan total. Kondisi: total ≥ Rp100.000. Output: total belanja, diskon, dan total bayar.</p>`],
+["1.11 Dekomposisi sistem peminjaman buku",`<ul><li><b>Data buku:</b> ID buku, judul, status ketersediaan.</li><li><b>Data anggota:</b> ID anggota dan identitas.</li><li><b>Pencarian:</b> menemukan buku dan memeriksa statusnya.</li><li><b>Transaksi:</b> mencatat tanggal pinjam, jatuh tempo, dan pengembalian.</li><li><b>Laporan:</b> daftar buku dipinjam, terlambat, atau tersedia.</li></ul><p>Uji skenario buku tersedia, buku sedang dipinjam, anggota tidak terdaftar, pengembalian tepat waktu, dan terlambat.</p>`]
+]},
+{title:"Sistem Operasi Komputer",subtitle:"Memahami bagaimana sistem operasi mengelola perangkat keras, aplikasi, dan pengguna.",intro:"Sistem operasi (Operating System/OS) adalah perangkat lunak sistem yang mengelola sumber daya komputer dan menyediakan layanan bagi aplikasi serta pengguna. OS menjadi penghubung perangkat keras, aplikasi, dan pengguna.",topics:[
+["2.1 Fungsi utama sistem operasi",`<div class="table-wrap"><table><tr><th>Fungsi</th><th>Penjelasan dan contoh</th></tr><tr><td>Manajemen proses</td><td>Mengatur program yang sedang berjalan; misalnya beberapa aplikasi berjalan bersamaan.</td></tr><tr><td>Penjadwalan CPU</td><td>Membagi waktu CPU kepada proses yang membutuhkan pemrosesan.</td></tr><tr><td>Manajemen memori</td><td>Mengatur RAM yang digunakan aplikasi.</td></tr><tr><td>Manajemen berkas</td><td>Membuat, menyimpan, menamai, memindahkan, dan menghapus file/folder.</td></tr><tr><td>Manajemen perangkat</td><td>Mengelola komunikasi dengan printer, keyboard, mouse, dan penyimpanan melalui driver dan layanan.</td></tr><tr><td>Keamanan dan hak akses</td><td>Mengatur akun, izin, dan akses ke sumber daya.</td></tr></table></div>`],
+["2.2 Proses booting",`<p><b>Booting</b> adalah proses awal sejak komputer dinyalakan hingga sistem operasi siap digunakan.</p><ol><li>Komputer dinyalakan dan firmware motherboard mulai bekerja.</li><li>BIOS/UEFI melakukan inisialisasi dan pemeriksaan awal perangkat keras (POST).</li><li>Firmware mencari perangkat yang dapat digunakan untuk boot.</li><li>Bootloader atau mekanisme pemuat sistem memulai pemuatan OS.</li><li>Bagian inti OS dimuat ke memori, kemudian layanan dan antarmuka dijalankan.</li></ol><div class="callout">BIOS/UEFI adalah firmware; SSD/HDD menyimpan sistem operasi; OS dimuat ke RAM untuk mengelola komputer dan aplikasi.</div>`],
+["2.3 BIOS dan UEFI",`<ul><li><b>BIOS (Basic Input/Output System):</b> firmware tradisional yang melakukan pemeriksaan awal dan memulai proses boot.</li><li><b>UEFI (Unified Extensible Firmware Interface):</b> antarmuka firmware yang lebih modern dengan dukungan fitur boot dan konfigurasi lebih luas.</li></ul><p>Fokus utama: firmware bekerja lebih awal daripada OS dan membantu menemukan perangkat boot.</p>`],
+["2.4 Manajemen proses dan penjadwalan CPU",`<p>Program yang sedang dieksekusi disebut <b>proses</b>. Ketika beberapa aplikasi berjalan, OS mengatur proses agar memperoleh waktu CPU. Penjadwalan CPU menentukan proses mana yang memperoleh giliran pemrosesan.</p><p>Printer dikelola OS melalui driver dan antrean cetak, tetapi bukan inti dari penjadwalan CPU.</p>`],
+["2.5 Memori dan kondisi RAM hampir penuh",`<p><b>RAM</b> adalah memori utama untuk menampung data dan instruksi yang sedang digunakan. Banyak tab peramban dan aplikasi dapat meningkatkan penggunaan RAM sehingga komputer melambat.</p><ul><li>Periksa penggunaan memori melalui Task Manager atau Activity Monitor.</li><li>Tutup aplikasi dan tab yang tidak diperlukan.</li><li>Simpan pekerjaan yang masih dapat disimpan sebelum menutup aplikasi yang tidak merespons.</li><li>Jangan menghapus folder sistem secara acak karena dapat merusak OS.</li></ul>`],
+["2.6 Manajemen file dan direktori",`<p><b>File</b> adalah kumpulan data yang disimpan dengan nama tertentu. <b>Folder/direktori</b> digunakan untuk mengelompokkan file dan subfolder.</p><ul><li>Gunakan nama file yang jelas, misalnya Tugas_Informatika_Bab1.docx.</li><li>Susun folder berdasarkan mata pelajaran, semester, atau jenis tugas.</li><li>Simpan file pada lokasi tepat dan cadangkan dokumen penting.</li></ul><div class="callout">Contoh struktur: Informatika → ASAS → Rangkuman_Belajar.docx.</div>`],
+["2.7 Akun pengguna dan hak akses",`<div class="table-wrap"><table><tr><th>Konsep</th><th>Makna</th></tr><tr><td>Akun standar</td><td>Hak terbatas untuk penggunaan sehari-hari.</td></tr><tr><td>Administrator</td><td>Hak istimewa untuk mengelola sistem dan konfigurasi.</td></tr><tr><td>Izin akses</td><td>Aturan siapa boleh membaca, mengubah, atau menjalankan sumber daya.</td></tr><tr><td>Kata sandi</td><td>Sarana autentikasi untuk membuktikan identitas pengguna.</td></tr></table></div><p><b>Least privilege:</b> pengguna hanya diberi hak yang diperlukan untuk tugasnya. Jangan memberikan hak administrator kepada semua siswa atau membagikan kata sandi administrator.</p>`],
+["2.8 Driver perangkat",`<p><b>Driver</b> adalah perangkat lunak yang membantu OS berkomunikasi dengan perangkat keras tertentu.</p><p>Jika printer tidak dapat mencetak: periksa koneksi, pastikan driver sesuai model printer dan OS, pasang dari sumber tepercaya, lalu periksa antrean cetak dan status printer.</p>`],
+["2.9 Pembaruan sistem operasi",`<p>Pembaruan resmi dapat memperbaiki celah keamanan, bug, stabilitas, dan kompatibilitas. Dapatkan pembaruan dari mekanisme resmi OS atau produsen.</p><div class="callout">Pembaruan tidak menjamin komputer kebal terhadap malware. Pengguna tetap perlu berhati-hati terhadap lampiran, tautan, aplikasi, dan penggunaan akun.</div>`],
+["2.10 Izin aplikasi dan privasi",`<p>Aplikasi dapat meminta izin mengakses kamera, mikrofon, lokasi, file, atau fitur lain. Izin harus sesuai fungsi aplikasi.</p><ul><li>Tanyakan apakah izin benar-benar diperlukan.</li><li>Tolak izin yang tidak relevan atau tidak diperlukan.</li><li>Periksa reputasi aplikasi dan sumber pemasangan.</li><li>Jangan memberikan izin hanya karena aplikasi tersedia di internet.</li></ul>`],
+["2.11 Diagnosis awal kegagalan boot",`<p>Jika muncul pesan <b>boot device not found</b>, jangan langsung memformat drive karena format dapat menghapus data.</p><ol><li>Catat pesan kesalahan.</li><li>Masuk ke BIOS/UEFI dan periksa apakah SSD/HDD terdeteksi.</li><li>Periksa urutan boot agar perangkat yang benar diprioritaskan.</li><li>Untuk desktop, periksa kabel penyimpanan hanya jika memiliki kompetensi dan perangkat sudah dimatikan serta dilepas dari listrik.</li><li>Jika drive terdeteksi tetapi OS gagal dimuat, gunakan prosedur pemulihan atau minta bantuan teknisi.</li></ol>`]
+]},
+{title:"Pemeliharaan Komputer",subtitle:"Menjaga perangkat tetap bersih, aman, dan berfungsi dengan baik.",intro:"Pemeliharaan komputer adalah tindakan untuk menjaga perangkat tetap bersih, aman, berfungsi baik, dan memiliki umur pakai yang wajar. Pemeliharaan dapat bersifat preventif maupun korektif.",topics:[
+["3.1 Pemeliharaan preventif dan korektif",`<div class="table-wrap"><table><tr><th>Jenis</th><th>Tujuan</th><th>Contoh</th></tr><tr><td>Preventif</td><td>Mengurangi kemungkinan kerusakan sebelum terjadi.</td><td>Membersihkan ventilasi berkala, memperbarui OS, dan backup data.</td></tr><tr><td>Korektif</td><td>Memperbaiki gangguan yang sudah muncul.</td><td>Memasang driver yang hilang atau mengganti kipas rusak setelah diagnosis.</td></tr></table></div>`],
+["3.2 Kebersihan fisik dan keselamatan kerja",`<p>Debu pada ventilasi dan kipas dapat menghambat aliran udara serta meningkatkan suhu perangkat.</p><ol><li>Matikan komputer dan monitor dengan prosedur benar.</li><li>Lepaskan kabel daya dari sumber listrik sebelum pembersihan internal.</li><li>Gunakan kain lembut/mikrofiber dan alat pembersih yang dirancang untuk elektronik.</li><li>Bersihkan ventilasi dan area kipas dengan hati-hati.</li><li>Pastikan cairan tidak masuk ke komponen dan perangkat benar-benar kering sebelum digunakan.</li></ol><div class="callout">Jangan menyemprot cairan langsung ke komponen, terutama ketika komputer menyala. Jangan memperbaiki bagian internal tanpa kompetensi atau pengawasan yang sesuai.</div>`],
+["3.3 Menjaga suhu dan sirkulasi udara",`<ul><li>Jangan menutup lubang ventilasi casing.</li><li>Beri jarak antarperangkat agar udara bersirkulasi.</li><li>Pastikan kipas dan ventilasi tidak tertutup debu.</li><li>Perhatikan kipas sangat bising, casing panas, performa menurun, atau komputer mati mendadak.</li><li>Jika tersedia, gunakan pemantauan suhu.</li></ul><p>Gejala panas berlebih dapat berkaitan dengan ventilasi tersumbat, kipas bermasalah, aliran udara buruk, beban kerja tinggi, atau masalah komponen/catu daya. Gejala bukan bukti pasti satu penyebab.</p>`],
+["3.4 Keamanan perangkat lunak dan malware",`<p><b>Malware</b> adalah perangkat lunak berbahaya yang dapat merusak sistem, mencuri data, mengganggu operasi, atau mengambil kendali perangkat.</p><ul><li>Jangan membuka lampiran tidak dikenal sebelum memverifikasi pengirim dan konteks.</li><li>Waspadai pesan mendesak, ancaman, hadiah, atau permintaan tindakan cepat yang tidak wajar.</li><li>Gunakan perlindungan keamanan tepercaya dan pindai file jika diperlukan.</li><li>Laporkan pesan mencurigakan kepada guru atau pengelola laboratorium.</li><li>Jangan meneruskan lampiran mencurigakan kepada teman.</li></ul>`],
+["3.5 Pencadangan data (backup)",`<p><b>Backup</b> adalah salinan data yang disimpan terpisah dari data utama agar dapat dipulihkan jika file hilang, rusak, terkena malware, atau proses pembaruan/perbaikan gagal.</p><ul><li>Cadangkan dokumen penting sebelum pembaruan atau pemeliharaan berisiko.</li><li>Simpan salinan pada media atau lokasi terpisah yang aman.</li><li>Periksa apakah file cadangan dapat dibuka.</li><li>Lakukan backup berkala, bukan hanya saat komputer bermasalah.</li></ul><div class="callout">Backup melindungi ketersediaan dan pemulihan data. Backup tidak menambah kapasitas RAM.</div>`],
+["3.6 Gejala kerusakan media penyimpanan",`<p>Bunyi tidak biasa pada hard disk mekanis, file sulit dibuka, atau kegagalan baca berulang dapat menjadi tanda masalah penyimpanan.</p><ol><li>Segera backup data yang masih dapat diakses.</li><li>Kurangi penggunaan drive yang dicurigai bermasalah.</li><li>Jalankan pemeriksaan dengan alat diagnosis tepercaya jika sesuai.</li><li>Minta bantuan teknisi jika gejala berlanjut atau data penting terancam.</li></ol><p>Prioritas pertama adalah menyelamatkan data, bukan terus menggunakan drive seolah tidak ada masalah.</p>`],
+["3.7 Keamanan akun dan kebiasaan pengguna",`<ul><li>Gunakan kata sandi yang kuat dan unik untuk setiap akun.</li><li>Jangan membagikan kata sandi kepada teman.</li><li>Jangan menempelkan kata sandi pada monitor atau tempat yang mudah dilihat.</li><li>Kunci layar ketika meninggalkan komputer.</li><li>Keluar dari akun setelah menggunakan komputer bersama.</li></ul>`],
+["3.8 Diagnosis awal gangguan jaringan",`<p>Jika satu komputer tidak terhubung sementara komputer lain di ruangan yang sama dapat terhubung, fokuskan pemeriksaan awal pada komputer yang bermasalah.</p><ol><li>Periksa Wi-Fi aktif atau kabel jaringan terpasang benar.</li><li>Periksa konfigurasi jaringan pada komputer tersebut.</li><li>Uji koneksi ke gateway atau jaringan sesuai arahan pengelola.</li><li>Catat pesan kesalahan dan laporkan jika masalah belum teratasi.</li></ol>`],
+["3.9 Membersihkan monitor",`<ul><li>Matikan monitor sebelum dibersihkan.</li><li>Gunakan kain mikrofiber lembut.</li><li>Gunakan cairan yang direkomendasikan untuk layar jika diperlukan.</li><li>Aplikasikan cairan pada kain, bukan menyemprot langsung ke layar.</li><li>Hindari tekanan berlebihan dan bahan kasar.</li></ul>`],
+["3.10 Dokumentasi pemeliharaan",`<p>Catatan pemeliharaan adalah rekam jejak tindakan dan kondisi perangkat. Catatan dapat memuat nomor inventaris, tanggal pemeriksaan, keluhan, tindakan pembersihan, pembaruan, komponen yang diganti, hasil pemeriksaan, dan nama petugas.</p><ul><li>Menelusuri riwayat gangguan dan perbaikan.</li><li>Merencanakan jadwal pemeliharaan berikutnya.</li><li>Menjadi dasar keputusan perbaikan atau penggantian komponen.</li></ul>`],
+["3.11 Menentukan prioritas pemeliharaan",`<div class="table-wrap"><table><tr><th>Kondisi</th><th>Prioritas/tindakan</th></tr><tr><td>Kipas bising, casing panas, mati mendadak</td><td>Hentikan penggunaan jika berisiko; periksa segera oleh petugas/teknisi.</td></tr><tr><td>Drive berbunyi tidak biasa dan file sulit dibuka</td><td>Backup data, kurangi penggunaan, lalu diagnosis.</td></tr><tr><td>Komputer lambat karena banyak aplikasi/tab</td><td>Periksa penggunaan memori dan tutup aplikasi yang tidak diperlukan.</td></tr><tr><td>Satu komputer tidak terhubung jaringan</td><td>Periksa koneksi dan konfigurasi komputer tersebut.</td></tr><tr><td>Komputer normal</td><td>Lanjutkan pemeliharaan preventif terjadwal dan dokumentasi.</td></tr></table></div>`]
+]}
+];
+
+const questions=[
+{chapter:1,type:"single",q:"Manakah pengertian algoritma yang paling tepat?",options:[
+["Urutan instruksi yang jelas, logis, dan berhingga untuk menyelesaikan masalah.",true,"Algoritma merupakan langkah-langkah jelas, logis, dapat dijalankan, dan memiliki kondisi berhenti."],
+["Kumpulan perangkat keras yang menjalankan komputer.",false,"Perangkat keras merupakan komponen fisik komputer, bukan pengertian algoritma."],
+["Hasil akhir yang diperoleh tanpa proses penyelesaian.",false,"Algoritma justru menjelaskan langkah atau proses untuk memperoleh hasil."],
+["Program yang hanya dapat dijalankan menggunakan internet.",false,"Algoritma tidak harus dijalankan dengan internet atau bahkan komputer."]],explain:"Algoritma menyusun langkah penyelesaian masalah secara sistematis. Langkah harus jelas, logis, dan berhingga."},
+{chapter:1,type:"multi",q:"Pilih semua pernyataan yang benar mengenai empat konsep berpikir komputasional.",options:[
+["Dekomposisi memecah masalah besar menjadi bagian yang lebih kecil.",true,"Dekomposisi membuat masalah lebih mudah ditangani dengan membaginya menjadi bagian kecil."],
+["Pengenalan pola mencari kesamaan atau keteraturan.",true,"Pengenalan pola membantu menemukan kesamaan pada data atau masalah."],
+["Abstraksi memilih informasi penting dan mengabaikan detail tidak relevan.",true,"Abstraksi berfokus pada informasi yang berhubungan dengan tujuan penyelesaian."],
+["Algoritma berarti mengabaikan urutan langkah penyelesaian.",false,"Algoritma justru menyusun langkah secara runtut dan dapat diuji."]],explain:"Dekomposisi, pengenalan pola, abstraksi, dan algoritma memiliki fungsi berbeda tetapi saling mendukung dalam menyelesaikan masalah."},
+{chapter:1,type:"single",q:"Sebuah daftar nama sudah diurutkan. Pencarian memeriksa elemen tengah lalu mempersempit setengah bagian yang dicari. Metode apakah itu?",options:[
+["Linear search",false,"Linear search memeriksa data satu per satu dari awal, bukan membagi rentang pencarian."],
+["Binary search",true,"Binary search memeriksa elemen tengah dan mempersempit separuh rentang pada data yang sudah terurut."],
+["Queue search",false,"Queue adalah struktur data antrean dengan prinsip FIFO, bukan metode pencarian yang dijelaskan."],
+["LIFO search",false,"LIFO merupakan prinsip tumpukan, bukan algoritma pencarian yang dijelaskan."]],explain:"Binary search mensyaratkan data sudah terurut. Setelah memeriksa elemen tengah, area pencarian dipersempit."},
+{chapter:1,type:"multi",q:"Dalam struktur data queue dengan prinsip FIFO, tindakan manakah yang benar?",options:[
+["Elemen baru ditambahkan pada bagian belakang antrean (rear).",true,"Elemen baru masuk dari bagian belakang antrean."],
+["Elemen yang dilayani diambil dari bagian depan antrean (front).",true,"Pengambilan elemen dilakukan dari bagian depan antrean."],
+["Elemen yang masuk lebih dahulu dilayani lebih dahulu.",true,"FIFO berarti First In, First Out: yang pertama masuk menjadi yang pertama keluar."],
+["Elemen terakhir masuk harus selalu keluar lebih dahulu.",false,"Ini merupakan prinsip LIFO yang digunakan pada stack, bukan FIFO."]],explain:"Queue bekerja seperti antrean kantin: orang yang datang lebih dahulu akan dilayani lebih dahulu."},
+{chapter:2,type:"single",q:"Pada proses booting, komponen yang melakukan inisialisasi dan pemeriksaan awal perangkat keras sebelum OS dimuat adalah ...",options:[
+["Aplikasi pengolah kata",false,"Aplikasi pengolah kata berjalan setelah sistem operasi siap digunakan."],
+["BIOS/UEFI",true,"Firmware BIOS/UEFI bekerja pada tahap awal, melakukan inisialisasi dan pemeriksaan awal perangkat keras."],
+["File manager",false,"File manager merupakan aplikasi untuk mengelola file setelah OS berjalan."],
+["Driver printer",false,"Driver membantu OS berkomunikasi dengan perangkat, bukan memulai proses booting."]],explain:"Firmware bekerja sebelum OS. Firmware melakukan POST, mencari perangkat boot, kemudian proses pemuatan OS dimulai."},
+{chapter:2,type:"multi",q:"Pilih semua fungsi yang termasuk tugas sistem operasi.",options:[
+["Mengatur proses dan penjadwalan penggunaan CPU.",true,"OS mengelola proses dan membagi waktu CPU kepada proses yang berjalan."],
+["Mengelola penggunaan memori utama (RAM).",true,"Manajemen memori merupakan fungsi utama OS."],
+["Mengatur file, folder, serta komunikasi dengan perangkat melalui driver.",true,"OS mengelola sistem berkas dan perangkat keras melalui driver serta layanan."],
+["Membersihkan debu secara fisik dari kipas komputer.",false,"Pembersihan debu merupakan tindakan pemeliharaan fisik oleh pengguna atau teknisi, bukan tugas OS."]],explain:"Sistem operasi mengelola sumber daya komputer, termasuk proses, CPU, memori, file, perangkat, dan keamanan."},
+{chapter:2,type:"single",q:"Siswa menggunakan komputer laboratorium untuk belajar. Prinsip hak akses yang paling tepat adalah ...",options:[
+["Semua siswa mendapat hak administrator.",false,"Hak administrator tidak perlu diberikan kepada semua siswa dan dapat meningkatkan risiko perubahan sistem."],
+["Siswa menggunakan akun standar dengan hak sesuai kebutuhan.",true,"Prinsip least privilege memberi pengguna hanya hak yang diperlukan untuk tugasnya."],
+["Semua siswa menggunakan satu kata sandi administrator.",false,"Kata sandi administrator tidak boleh dibagikan dan akun perlu dikelola dengan aman."],
+["Semua folder sistem dapat diubah oleh setiap pengguna.",false,"Akses ke sumber daya sistem harus dibatasi sesuai izin dan kebutuhan."]],explain:"Least privilege berarti pengguna hanya diberi hak yang diperlukan. Pengelola laboratorium dapat menggunakan hak administrator untuk tugas pengelolaan."},
+{chapter:2,type:"multi",q:"Komputer menampilkan pesan “boot device not found”. Tindakan diagnosis awal yang tepat adalah ...",options:[
+["Mencatat pesan kesalahan yang tampil.",true,"Pesan kesalahan membantu mengarahkan diagnosis dan penanganan."],
+["Memeriksa apakah SSD/HDD terdeteksi melalui BIOS/UEFI.",true,"Pemeriksaan ini membantu mengetahui apakah media penyimpanan dikenali firmware."],
+["Memeriksa urutan boot agar perangkat yang benar diprioritaskan.",true,"Urutan boot yang keliru dapat membuat komputer tidak menemukan perangkat untuk memulai OS."],
+["Langsung memformat drive tanpa pemeriksaan.",false,"Format dapat menghapus data. Diagnosis harus dilakukan lebih dahulu."]],explain:"Kegagalan boot perlu didiagnosis secara bertahap. Jangan langsung memformat drive karena data dapat hilang."},
+{chapter:3,type:"single",q:"Membersihkan ventilasi komputer secara berkala untuk mencegah penumpukan debu termasuk jenis pemeliharaan ...",options:[
+["Preventif",true,"Tindakan dilakukan untuk mengurangi kemungkinan gangguan sebelum kerusakan terjadi."],
+["Korektif",false,"Korektif menangani gangguan yang sudah muncul, bukan tindakan pencegahan rutin."],
+["Pemulihan data",false,"Pemulihan data berkaitan dengan mengembalikan data yang hilang atau rusak."],
+["Penjadwalan CPU",false,"Penjadwalan CPU adalah fungsi OS dalam mengatur giliran pemrosesan."]],explain:"Preventif bertujuan mencegah gangguan. Membersihkan ventilasi berkala merupakan contoh pemeliharaan preventif."},
+{chapter:3,type:"multi",q:"Manakah tindakan yang aman saat melakukan pembersihan internal komputer?",options:[
+["Mematikan komputer sebelum pembersihan.",true,"Perangkat harus dimatikan dengan prosedur yang benar sebelum dibersihkan."],
+["Melepaskan kabel daya dari sumber listrik.",true,"Sumber listrik perlu dilepas sebelum pembersihan internal."],
+["Menggunakan kain lembut atau alat yang dirancang untuk perangkat elektronik.",true,"Alat yang sesuai membantu mengurangi risiko kerusakan komponen."],
+["Menyemprotkan cairan langsung ke komponen ketika komputer menyala.",false,"Cairan tidak boleh disemprotkan langsung ke komponen, terlebih saat perangkat menyala."]],explain:"Keselamatan adalah prioritas. Matikan dan lepaskan sumber listrik, gunakan alat yang tepat, serta pastikan perangkat kering sebelum digunakan kembali."},
+{chapter:3,type:"multi",q:"Hard disk mengeluarkan bunyi tidak biasa dan beberapa file sulit dibuka. Tindakan yang tepat adalah ...",options:[
+["Segera mencadangkan data yang masih dapat diakses.",true,"Penyelamatan data merupakan prioritas utama ketika media penyimpanan menunjukkan gejala masalah."],
+["Mengurangi penggunaan drive yang dicurigai bermasalah.",true,"Penggunaan perlu dikurangi untuk menekan risiko kerusakan lanjutan."],
+["Melakukan diagnosis dengan alat tepercaya jika sesuai.",true,"Pemeriksaan membantu mengenali kondisi drive dan langkah selanjutnya."],
+["Terus menggunakan drive secara intensif tanpa pemeriksaan.",false,"Penggunaan intensif dapat meningkatkan risiko kerusakan lanjutan dan kehilangan data."]],explain:"Prioritasnya adalah backup, mengurangi penggunaan, lalu diagnosis. Jangan menganggap gejala kerusakan sebagai masalah sepele."},
+{chapter:3,type:"single",q:"Hanya satu komputer yang tidak dapat terhubung ke jaringan, sedangkan komputer lain di ruangan yang sama dapat terhubung. Pemeriksaan awal sebaiknya ...",options:[
+["Mengganti seluruh perangkat jaringan sekolah.",false,"Bukti awal menunjukkan masalah pada satu komputer, sehingga penggantian seluruh perangkat jaringan tidak tepat sebagai langkah pertama."],
+["Memeriksa koneksi dan konfigurasi jaringan komputer tersebut.",true,"Diagnosis awal harus difokuskan pada komputer yang mengalami masalah, termasuk Wi-Fi, kabel, dan konfigurasi."],
+["Menghapus seluruh file komputer.",false,"Penghapusan file tidak menyelesaikan masalah koneksi jaringan."],
+["Memformat komputer tanpa pemeriksaan.",false,"Format bukan langkah diagnosis awal untuk gangguan jaringan."]],explain:"Diagnosis harus sesuai bukti. Jika hanya satu komputer bermasalah, fokuskan pemeriksaan pada koneksi dan konfigurasi komputer tersebut."}
+];
+
+const essays=[
+{title:"Uraian 1 · Algoritma diskon koperasi",q:"Koperasi memberikan diskon 10% jika total belanja sebelum diskon minimal Rp100.000. Jelaskan input, proses, kondisi, dan output yang diperlukan.",a:"<b>Input:</b> harga satuan dan jumlah setiap barang.<br><b>Proses:</b> hitung subtotal setiap barang (harga satuan × jumlah), kemudian jumlahkan seluruh subtotal menjadi total belanja.<br><b>Kondisi:</b> jika total ≥ Rp100.000, diskon = 10% × total. Jika tidak, diskon = 0.<br><b>Output:</b> total belanja, nilai diskon, dan total yang harus dibayar. Batas Rp100.000 termasuk memenuhi syarat diskon."},
+{title:"Uraian 2 · Diagnosis kegagalan boot",q:"Komputer menampilkan pesan “boot device not found”. Jelaskan langkah diagnosis awal yang aman sebelum memutuskan tindakan perbaikan.",a:"<b>1.</b> Catat pesan kesalahan yang tampil.<br><b>2.</b> Masuk ke BIOS/UEFI sesuai prosedur perangkat dan periksa apakah SSD/HDD terdeteksi.<br><b>3.</b> Periksa urutan boot dan pastikan perangkat yang benar diprioritaskan.<br><b>4.</b> Pada komputer desktop, periksa kabel penyimpanan jika memiliki kompetensi dan perangkat telah dimatikan serta dilepas dari listrik.<br><b>5.</b> Jika drive terdeteksi tetapi OS tetap gagal dimuat, gunakan prosedur pemulihan yang sesuai atau minta bantuan teknisi. Jangan langsung memformat drive karena dapat menghapus data."},
+{title:"Uraian 3 · Kerusakan media penyimpanan",q:"Sebuah komputer mengeluarkan bunyi tidak biasa dari hard disk dan beberapa file sulit dibuka. Jelaskan prioritas tindakan pemeliharaan beserta alasannya.",a:"<b>1.</b> Segera backup data yang masih dapat diakses agar data penting memiliki salinan.<br><b>2.</b> Kurangi penggunaan drive yang dicurigai bermasalah untuk mengurangi risiko kerusakan lanjutan.<br><b>3.</b> Lakukan diagnosis dengan alat tepercaya jika sesuai.<br><b>4.</b> Minta bantuan teknisi jika gejala berlanjut atau data penting terancam.<br><b>Alasan:</b> penyelamatan data menjadi prioritas utama, bukan terus menggunakan drive seolah tidak ada masalah."}
+];
+
+let currentChapter=0,quizMode="pg",quizIndex=0;
+const quizAnswers=[];
+const $=s=>document.querySelector(s);
+function setView(v){document.querySelectorAll(".view").forEach(x=>x.classList.toggle("active",x.id==="view-"+v));document.querySelectorAll("[data-view]").forEach(x=>x.classList.toggle("active",x.dataset.view===v));if(v==="materi")renderChapter();if(v==="latihan")renderQuiz();window.scrollTo({top:0,behavior:"smooth"});}
+function renderChapter(){
+  $("#chapter-tabs").innerHTML=chapters.map((c,i)=>`<button class="tab ${i===currentChapter?"active":""}" data-chapter="${i}">Bab ${i+1}</button>`).join("");
+  const c=chapters[currentChapter];
+  $("#chapter-intro").innerHTML=`<div class="chapter-no">BAB 0${currentChapter+1}</div><h3>${c.title}</h3><p class="muted">${c.subtitle}</p><p>${c.intro}</p>`;
+  renderTopics();
+}
+function renderTopics(){
+  const c=chapters[currentChapter],q=($("#topic-search").value||"").toLowerCase().trim();
+  const topics=c.topics.filter(t=>(t[0]+" "+t[1].replace(/<[^>]*>/g," ")).toLowerCase().includes(q));
+  $("#topic-list").innerHTML=topics.length?topics.map((t,i)=>`<details class="topic" ${i===0?"open":""}><summary>${t[0]}</summary><div class="topic-body">${t[1]}</div></details>`):'<div class="panel muted">Topik tidak ditemukan. Coba kata kunci lain.</div>';
+}
+function openChapter(i){currentChapter=i;$("#topic-search").value="";setView("materi");renderChapter();}
+function currentAnswer(){return quizAnswers[quizIndex]||(quizAnswers[quizIndex]={selected:[],submitted:false,correct:false});}
+function renderQuiz(){
+  document.querySelectorAll("[data-mode]").forEach(x=>x.classList.toggle("active",x.dataset.mode===quizMode));
+  const area=$("#quiz-area");
+  if(quizMode==="essay"){area.innerHTML=essays.map((e,i)=>`<article class="essay"><div class="chapter-no">SOAL URAIAN ${i+1}</div><h3>${e.title}</h3><p>${e.q}</p><button class="btn outline" data-essay="${i}">Lihat contoh jawaban</button><div class="answer" id="essay-answer-${i}" hidden>${e.a}</div></article>`).join("");return;}
+  if(quizIndex>=questions.length){renderResult();return;}
+  const q=questions[quizIndex],ans=currentAnswer(),letters=["A","B","C","D"];
+  area.innerHTML=`<div class="quiz-card"><div class="quiz-meta"><span>SOAL ${quizIndex+1} DARI ${questions.length}</span><span>Bab ${q.chapter} · ${q.type==="multi"?"Pilih semua jawaban benar":"Pilih satu jawaban"}</span></div><div class="progress"><span style="width:${((quizIndex+1)/questions.length)*100}%"></span></div><div class="question">${q.q}</div><div class="instruction">${q.type==="multi"?"Pilih seluruh opsi yang benar. Jawaban dinilai benar jika semua pilihan tepat.":"Pilih satu jawaban yang paling tepat."}</div><div id="options">${q.options.map((o,i)=>{const selected=ans.selected.includes(i);let cls=selected?"selected":"";if(ans.submitted)cls+=" "+(o[1]?"correct":selected?"incorrect":"");return `<label class="option ${cls}"><input type="${q.type==="multi"?"checkbox":"radio"}" name="quiz-option" value="${i}" ${selected?"checked":""} ${ans.submitted?"disabled":""}><span class="letter">${letters[i]}</span><span>${o[0]}</span></label>${ans.submitted?`<div class="explanation">${o[2]}</div>`:""}`}).join("")}</div>${ans.submitted?`<div class="feedback ${ans.correct?"good":"bad"}"><b>${ans.correct?"✓ Jawaban tepat!":"Belum tepat. Pelajari pembahasannya."}</b><br>${q.explain}<br><br><b>Kunci jawaban:</b> ${q.options.map((o,i)=>o[1]?letters[i]:null).filter(Boolean).join(", ")}</div>`:""}<div class="quiz-actions"><button class="btn secondary" data-quiz="prev" ${quizIndex===0?"disabled":""}>← Sebelumnya</button>${ans.submitted?`<button class="btn" data-quiz="next">${quizIndex===questions.length-1?"Lihat Hasil":"Soal Berikutnya →"}</button><button class="btn secondary" data-quiz="retry">Ulangi Soal</button>`:`<button class="btn" data-quiz="check" ${ans.selected.length===0?"disabled":""}>Periksa Jawaban</button>`}</div></div>`;
+}
+function renderResult(){
+  const done=quizAnswers.filter(a=>a&&a.submitted).length,score=quizAnswers.filter(a=>a&&a.submitted&&a.correct).length,pct=Math.round(score/questions.length*100);
+  $("#quiz-area").innerHTML=`<div class="quiz-card" style="text-align:center;padding:28px 18px"><div style="font-size:38px;margin-bottom:10px">${pct>=80?"🏆":pct>=60?"🌟":"📚"}</div><h2>Latihan Selesai!</h2><p class="muted">Terima kasih sudah berlatih. Pelajari kembali pembahasan untuk memperkuat pemahaman.</p><div style="font-size:46px;font-weight:900;color:var(--teal);margin:15px 0">${score}/${questions.length}</div><b>${pct}% jawaban benar</b><div class="progress" style="margin:15px auto;max-width:300px"><span style="width:${pct}%"></span></div><p class="muted">Soal yang diperiksa: ${done} dari ${questions.length}.</p><button class="btn" data-quiz="restart">Ulangi Semua Latihan</button></div>`;
+}
+document.addEventListener("click",e=>{
+ const b=e.target.closest("button");if(!b)return;
+ if(b.dataset.view){setView(b.dataset.view);return;}
+ if(b.dataset.openChapter!==undefined){openChapter(Number(b.dataset.openChapter));return;}
+ if(b.dataset.chapter!==undefined){currentChapter=Number(b.dataset.chapter);renderChapter();return;}
+ if(b.dataset.mode){quizMode=b.dataset.mode;renderQuiz();return;}
+ if(b.dataset.essay!==undefined){const a=$("#essay-answer-"+b.dataset.essay);a.hidden=!a.hidden;b.textContent=a.hidden?"Lihat contoh jawaban":"Sembunyikan contoh jawaban";return;}
+ if(b.dataset.quiz){const action=b.dataset.quiz,ans=currentAnswer();
+  if(action==="prev"){quizIndex=Math.max(0,quizIndex-1);renderQuiz();}
+  if(action==="check"){if(!ans.selected.length)return;const q=questions[quizIndex],correct=q.options.map((o,i)=>o[1]?i:null).filter(x=>x!==null);ans.correct=ans.selected.length===correct.length&&ans.selected.every(x=>correct.includes(x));ans.submitted=true;renderQuiz();}
+  if(action==="next"){quizIndex++;renderQuiz();}
+  if(action==="retry"){quizAnswers[quizIndex]={selected:[],submitted:false,correct:false};renderQuiz();}
+  if(action==="restart"){quizAnswers.length=0;quizIndex=0;renderQuiz();}
+ }
+});
+document.addEventListener("change",e=>{
+ if(e.target.name!=="quiz-option")return;
+ const q=questions[quizIndex],ans=currentAnswer(),n=Number(e.target.value);
+ if(q.type==="single")ans.selected=[n];else ans.selected=e.target.checked?[...ans.selected,n]:ans.selected.filter(x=>x!==n);
+ renderQuiz();
+});
+$("#topic-search").addEventListener("input",renderTopics);
+renderChapter();renderQuiz();
+</script>
+</body>
+</html>
